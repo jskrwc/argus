@@ -1,0 +1,6 @@
+<!--listing of videos -->
+
+<ul style="list-style-type:none">
+  <li> <%= link_to image_tag("http://img.youtube.com/vi/#{youtube_id(video.url)}/2.jpg"), video.url, target: :blank %></li>
+  <li>  <%= link_to youtube_id(video.url), video.url, target: :blank %></li>
+</ul>

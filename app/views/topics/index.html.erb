@@ -1,0 +1,33 @@
+<h1>Topics</h1>
+ <div class="row">
+  <div class="col-md-6">
+    <% @topics.each do |topic| %>
+      <div class="media">
+        <div class="media-heading">
+          <h4><%= link_to topic.title, topic %></h4>
+        </div>
+
+        <div class="media-body">
+          <div class="col-md-8 panel panel-info">
+            <% topic.videos.each do |video| %>
+              <ul style="list-style-type:none">
+                <li> <%= link_to image_tag("http://img.youtube.com/vi/#{youtube_id(video.url)}/2.jpg"), video.url, target: :blank %></li>
+                <li>  <%= link_to youtube_id(video.url), video.url, target: :blank %></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
+</div>
+
+
+<% comment do %>
+    NOTE form partial _part only contains the list and not the loop bc  index.html uses topic.videos; show.html uses @topic.videos
+<% comment end %>
