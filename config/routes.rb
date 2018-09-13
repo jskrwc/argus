@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'videos/show'
+
+  get 'videos/new'
+
+  get 'videos/edit'
+
   resources :topics do
     resources :videos
   end

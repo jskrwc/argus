@@ -3,6 +3,7 @@
   <div class="col-md-6">
     <% @topics.each do |topic| %>
       <div class="media">
+
         <div class="media-heading">
           <h4><%= link_to topic.title, topic %></h4>
         </div>
@@ -11,8 +12,8 @@
           <div class="col-md-8 panel panel-info">
             <% topic.videos.each do |video| %>
               <ul style="list-style-type:none">
-                <li> <%= link_to image_tag("http://img.youtube.com/vi/#{youtube_id(video.url)}/2.jpg"), video.url, target: :blank %></li>
-                <li>  <%= link_to youtube_id(video.url), video.url, target: :blank %></li>
+                <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(topic, video) %></li>
+                <li>  <%= link_to video.video_title, topic_video_path(topic, video) %></li>
               </ul>
             <% end %>
           </div>

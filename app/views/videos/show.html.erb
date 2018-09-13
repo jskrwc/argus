@@ -1,0 +1,8 @@
+<iframe src='https://www.youtube.com/embed/<%= @video.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+
+
+
+<div>
+  <%= link_to "Delete Video", [@video.topic, @video], method: :delete, class: 'btn btn-danger' %>
+  <%= link_to "Edit Video", edit_topic_video_path(@video.topic, @video), class: 'btn btn-success' %>
+</div>
