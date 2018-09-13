@@ -10,14 +10,6 @@ Rails.application.routes.draw do
     resources :videos
   end
 
-  get 'topics/index'
-
-  get 'topics/show'
-
-  get 'topics/new'
-
-  get 'topics/edit'
-
   devise_for :users
 
   get 'welcome/index'
@@ -25,4 +17,6 @@ Rails.application.routes.draw do
   get 'welcome/about'
 
   root 'welcome#index'
+
+  post :incoming, to: 'incoming#create'
 end
