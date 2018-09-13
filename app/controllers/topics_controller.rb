@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @topics = Topic.all
+    @topics = Topic.includes(:videos).all
   end
 
   def show
