@@ -34,7 +34,7 @@ class IncomingController < ApplicationController
     end
 
     # Now that you're sure you have a valid user and topic, build and save a new video
-    @video = @topic.video.build(url: @url)
+    @video = @topic.videos.build(url: @url)
     @video.save
 
     # Assuming all went well.
