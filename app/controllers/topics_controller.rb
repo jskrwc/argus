@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @topics = Topic.includes(:videos).all
+    @topics = Topic.includes(:videos).all  # load all upfront for n+1 efficiency
   end
 
   def show

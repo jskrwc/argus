@@ -23,3 +23,12 @@
    </div>
  </div>
  <%= link_to "Add Video", new_topic_video_path(@topic), class: 'btn btn-success' %>
+
+ <div>
+   <p>You can also submit new videos by email using the following format: </p>
+   <ul style="list-style-type:none"
+     <li><%= mail_to "videos@argus.today", 'videos@argus.today' %></li>
+     <li> Subject:  [put the topic name]</li>
+     <li> Body:     [put only the link]</li>
+   </ui>
+ </div>
