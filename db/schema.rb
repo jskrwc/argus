@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180913040944) do
+ActiveRecord::Schema.define(version: 20180920185927) do
 
   create_table "topics", force: :cascade do |t|
     t.string "title"
@@ -49,7 +49,9 @@ ActiveRecord::Schema.define(version: 20180913040944) do
     t.datetime "updated_at", null: false
     t.string "video_id"
     t.string "video_title"
+    t.integer "user_id"
     t.index ["topic_id"], name: "index_videos_on_topic_id"
+    t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
 end

@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: (:show)
 
   def show
     @video = Video.find(params[:id])
@@ -9,11 +9,13 @@ class VideosController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
     @video = Video.new
+    authorize @video
   end
 
   def edit
     @video = Video.find(params[:id])
     @topic = @video.topic
+    authorize @video
   end
 
   def create
@@ -21,6 +23,9 @@ class VideosController < ApplicationController
 
     @topic = Topic.find(params[:topic_id])
     @video.topic = @topic
+    @video.user = current_user
+
+    authorize @video
 
     if @video.save
       flash[:notice] = "Video has been saved"
@@ -35,6 +40,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     # @video.url = params[:video][:url]
     @video.assign_attributes(video_params)
+    authorize @video
 
     if @video.save
       flash[:notice] = "The Video has been updated"
@@ -47,6 +53,7 @@ class VideosController < ApplicationController
 
   def destroy
     @video = Video.find(params[:id])
+    authorize @video
 
     if @video.destroy
       flash[:notice] = "\"#{@video.video_id}\" was deleted successfully."

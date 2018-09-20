@@ -1,0 +1,3 @@
+class VideoPolicy < ApplicationPolicy
+
+end 

@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: (:index)
 
   def index
     @topics = Topic.includes(:videos).all  # load all upfront for n+1 efficiency

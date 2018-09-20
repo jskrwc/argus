@@ -1,5 +1,6 @@
 class Video < ApplicationRecord
   belongs_to :topic
+  belongs_to :user, optional: true 
 
   before_save :get_video_id
   before_save :get_video_title

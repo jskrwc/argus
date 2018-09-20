@@ -3,6 +3,12 @@
 
 
 <div>
-  <%= link_to "Delete Video", [@video.topic, @video], method: :delete, class: 'btn btn-danger' %>
-  <%= link_to "Edit Video", edit_topic_video_path(@video.topic, @video), class: 'btn btn-success' %>
+  <% if policy(Video.new).create? %>
+    <%= link_to "Delete Video", [@video.topic, @video], method: :delete, class: 'btn btn-danger' %>
+    <%= link_to "Edit Video", edit_topic_video_path(@video.topic, @video), class: 'btn btn-success' %>
+  <% else %>
+    <%= link_to "Delete Video", [@video.topic, @video], method: :delete, class: 'btn btn-danger' %>
+    <%= link_to "Edit Video", edit_topic_video_path(@video.topic, @video), class: 'btn btn-success' %>
+    <h6> You must be signed in to edit videos!</h6>
+  <% end %>
 </div>
