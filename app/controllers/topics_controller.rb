@@ -16,6 +16,7 @@ class TopicsController < ApplicationController
 
   def edit
     @topic = Topic.find(params[:id])
+    authorize @topic
   end
 
   def create
@@ -46,6 +47,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic = Topic.find(params[:id])
+    authorize @topic
 
     if @topic.destroy
       flash[:notice] = "\"#{@topic.title}\" was deleted successfully."

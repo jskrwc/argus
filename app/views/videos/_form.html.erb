@@ -2,8 +2,18 @@
   <div class="col-md-8">
     <%= form_for [topic, video] do |f| %>
       <div class="form-group">
+        <%= f.label "Video link" %>
         <%= f.text_field :url, class: 'form-control', placeholder: "Enter YouTube video URL" %>
       </div>
+
+<!--BUG  works fine for edit view, but new view, dropdown not function (starts blank, only can assign to current topic) -->
+<!--possible fix: don't give topic dropdown if new vid  e.g. auto assign current topic  -->
+
+      <div class-"form-group">
+        <%= f.label :topic, "Topic" %>
+        <%= f.collection_select :topic_id, Topic.order(:id), :id, :title, include_blank: true %>
+      </div>
+
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
       </div>

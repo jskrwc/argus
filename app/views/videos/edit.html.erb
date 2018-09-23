@@ -1,3 +1,8 @@
 <h1>Edit Video</h1>
 
+<h4>Topic: <%= @video.topic.title %></h4>
+<h4><%= @video.video_title %></h4>
+
+<br><br>
+
 <%= render partial: 'form', locals: { topic: @topic, video: @video } %>
