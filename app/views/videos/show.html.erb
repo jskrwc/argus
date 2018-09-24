@@ -1,8 +1,8 @@
-<h5>Topic: <%= @video.topic.title %></h5>
+<h3>Topic: <%= @video.topic.title %></h3>
 <h5><%= @video.video_title %></h5>
 
-<iframe src='https://www.youtube.com/embed/<%= @video.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
 
+<iframe src='https://www.youtube.com/embed/<%= @video.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
 
 
 <div>
@@ -12,6 +12,15 @@
   <% else %>
     <%= link_to "Delete Video", '', class: 'btn btn-danger disabled', disabled:true %>
     <%= link_to "Edit Video", '', class: 'btn btn-success disabled', disabled:true %>
-    <h6> You must be signed in to edit videos!</h6>
+    <h6> You can only edit your own videos.  You also must me signed in to make comments!</h6>
   <% end %>
 </div>
+
+<div>
+  <h3>Comments:</h3>
+  <%= render @video.comments %>
+</div>
+
+<% if policy(Comment.new).create? %>
+  <%= render 'comments/form', comment: Comment.new, video: @video %>
+<% end %>

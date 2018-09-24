@@ -1,6 +1,7 @@
 class Video < ApplicationRecord
   belongs_to :topic
-  belongs_to :user, optional: true 
+  belongs_to :user, optional: true
+  has_many :comments, dependent: :destroy 
 
   before_save :get_video_id
   before_save :get_video_title
