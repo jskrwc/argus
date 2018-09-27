@@ -1,0 +1,11 @@
+<% if current_user %>
+<div class="vote-arrows pull-left">
+  <div><%= link_to " ", video_up_vote_path(video), class: 'glyphicon glyphicon-chevron-up', method: :post%></div>
+  <div><strong><%= video.points %></strong></div>
+  <div><%= link_to " ", video_down_vote_path(video), class: 'glyphicon glyphicon-chevron-down', method: :post%></div>
+
+   &nbsp &nbsp &nbsp
+  <!-- hold for favorite star?  or put favs in separate partial
+  fav &nbsp -->
+</div>
+<% end %>

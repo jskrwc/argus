@@ -1,7 +1,8 @@
 class Video < ApplicationRecord
   belongs_to :topic
   belongs_to :user, optional: true
-  has_many :comments, dependent: :destroy 
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   before_save :get_video_id
   before_save :get_video_title
@@ -24,6 +25,18 @@ class Video < ApplicationRecord
     if match && !match[1].blank?
       self.video_title = "Title of " + match[1]
     end
+  end
+
+  def up_votes
+    votes.where(value: 1).count
+  end
+
+  def down_votes
+    votes.where(value: -1).count
+  end
+
+  def points
+    votes.sum(:value)
   end
 
 end
