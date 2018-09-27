@@ -20,6 +20,11 @@
   <% end %>
 
   <div class="col-md-4 inline-block pull-right">
+
+    <% if current_user %>
+      <%= render partial: 'favorites/favorite', locals: { video: @video } %>
+    <% end %>
+
     <h5>
       <%= pluralize(@video.points, 'point') %>
       <div>
@@ -32,7 +37,6 @@
   </div>
 
 </div>
-
 
 <div>
   <h3>Comments:</h3>

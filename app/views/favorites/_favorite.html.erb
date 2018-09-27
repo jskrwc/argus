@@ -1,0 +1,9 @@
+<% if favorite = current_user.favorite_for(video) %>
+  <%= link_to [video, favorite], class: 'btn btn-danger', method: :delete do %>
+    <i class="glyphicon glyhicon-star-empty"></i>&nbsp; Unfav it
+  <% end %>
+<% else %>
+  <%= link_to [video, Favorite.new], class: 'btn btn-primary', method: :post do %>
+    <i class="glyphicon glyphicon-star"></i>&nbsp; Fav it
+  <% end %>
+<% end %>

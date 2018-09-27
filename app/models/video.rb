@@ -3,6 +3,7 @@ class Video < ApplicationRecord
   belongs_to :user, optional: true
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   before_save :get_video_id
   before_save :get_video_title

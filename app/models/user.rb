@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :videos
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # before_save { self.role ||= :standard }  #happens before validation
 
@@ -20,4 +21,8 @@ class User < ApplicationRecord
   end
 
   enum role: [:standard, :admin]
+
+  def favorite_for(video)
+    favorites.where(video_id: video.id).first
+  end 
 end
