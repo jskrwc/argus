@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'videos/show'
-
-  get 'videos/new'
-
-  get 'videos/edit'
-
   resources :topics do
     resources :videos, except: [:index]
   end
@@ -18,8 +12,8 @@ Rails.application.routes.draw do
   end
 
 
-
   devise_for :users
+  resources :users, only: [:show]
 
   get 'welcome/index'
 

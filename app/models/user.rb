@@ -24,5 +24,10 @@ class User < ApplicationRecord
 
   def favorite_for(video)
     favorites.where(video_id: video.id).first
+  end
+
+  def favorited_videos
+    favorites.includes( video: :topic ).map(&:video)
   end 
+
 end
