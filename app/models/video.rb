@@ -8,6 +8,10 @@ class Video < ApplicationRecord
   before_save :get_video_id
   before_save :get_video_title
 
+  # default_scope {order('created_at DESC') }
+    default_scope {order('rank DESC') }
+
+
   # BUG validation below is preventing create video
   # validates :video_id, length: { minimum: 11 }, presence: true
 
@@ -38,6 +42,12 @@ class Video < ApplicationRecord
 
   def points
     votes.sum(:value)
+  end
+
+  def update_rank
+    age_in_days = (created_at - Time.new(1970,1,1)) / 1.day.seconds
+    new_rank = points + age_in_days
+    update_attribute(:rank, new_rank)
   end
 
 end

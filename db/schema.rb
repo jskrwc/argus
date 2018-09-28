@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180927065652) do
+ActiveRecord::Schema.define(version: 20180928142417) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180927065652) do
     t.string "video_id"
     t.string "video_title"
     t.integer "user_id"
+    t.float "rank"
     t.index ["topic_id"], name: "index_videos_on_topic_id"
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
