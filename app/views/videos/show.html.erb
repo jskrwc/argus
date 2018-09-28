@@ -1,15 +1,19 @@
-<h5>Topic: <%= @video.topic.title %></h5>
-<h1><%= @video.video_title %></h1>
-
-<!--Voting and Fav  -->
 <div>
   <%= render partial: 'votes/voting', locals: { video: @video } %>
+  <h1><%= @video.video_title %></h1>
+  <small>
+    In topic: <%= link_to @video.topic.title, @video.topic %><br>
+    submitted <%= time_ago_in_words(@video.created_at) %> ago.
+  </small>
 </div>
 
-<iframe src='https://www.youtube.com/embed/<%= @video.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' width='560' height='315 frameborder='0' allowfullscreen></iframe>
 
+<!-- <div class="embed-responsive embed-responsive-4by3"> -->
+<div class="inline-block">
+  <iframe src='https://www.youtube.com/embed/<%= @video.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' width='560' height='315 frameborder='0' allowfullscreen></iframe>
+</div>
 
-<div>
+<div class="inline-block">
   <% if policy(Video.new).create? %>
     <%= link_to "Delete Video", [@video.topic, @video], method: :delete, class: 'btn btn-danger' %>
     <%= link_to "Edit Video", edit_topic_video_path(@video.topic, @video), class: 'btn btn-success' %>
