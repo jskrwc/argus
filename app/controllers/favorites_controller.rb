@@ -10,7 +10,8 @@ class FavoritesController < ApplicationController
     else
       flash[:alert] = "Video favoriting failed."
     end
-    redirect_to [video.topic, video]
+    # redirect_to [video.topic, video]
+    redirect_back fallback_location: request.referrer
   end
 
   def destroy
@@ -22,7 +23,8 @@ class FavoritesController < ApplicationController
     else
       flash[:alert] = "Video unfavoriting failed."
     end
-    redirect_to [video.topic, video]
+    # redirect_to [video.topic, video]
+    redirect_back fallback_location: request.referrer
   end
 
 end

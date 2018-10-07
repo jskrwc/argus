@@ -1,5 +1,5 @@
 <div>
-  <%= render partial: 'votes/voting', locals: { video: @video } %>
+
   <h1><%= @video.video_title %></h1>
   <small>
     In topic: <%= link_to @video.topic.title, @video.topic %><br>
@@ -8,38 +8,48 @@
 </div>
 
 
-<!-- <div class="embed-responsive embed-responsive-4by3"> -->
-<div class="inline-block">
-  <iframe src='https://www.youtube.com/embed/<%= @video.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' width='560' height='315 frameborder='0' allowfullscreen></iframe>
-</div>
-
-<div class="inline-block">
-  <% if policy(Video.new).create? %>
-    <%= link_to "Delete Video", [@video.topic, @video], method: :delete, class: 'btn btn-danger' %>
-    <%= link_to "Edit Video", edit_topic_video_path(@video.topic, @video), class: 'btn btn-success' %>
-  <% else %>
-    <%= link_to "Delete Video", '', class: 'btn btn-danger disabled', disabled:true %>
-    <%= link_to "Edit Video", '', class: 'btn btn-success disabled', disabled:true %>
-    <h6> You can only edit your own videos.  You  must be signed in to comment, vote or favorite!</h6>
-  <% end %>
-
-  <div class="col-md-4 inline-block pull-right">
-
-    <% if current_user %>
-      <%= render partial: 'favorites/favorite', locals: { video: @video } %>
-    <% end %>
-
-    <h5>
-      <%= pluralize(@video.points, 'point') %>
-      <div>
-        <small>
-          <%= pluralize(@video.up_votes, 'up vote') %>,
-          <%= pluralize(@video.down_votes, 'down vote') %>
-        </small>
-      </div>
-    </h5>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="embed-responsive embed-responsive-4by3">
+      <iframe src='https://www.youtube.com/embed/<%= @video.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' width='560' height='315' frameborder='0' allowfullscreen></iframe>
+    </div>
   </div>
 
+  <div class="col-sm-4">
+    <div class="row">
+      <div class="col-sm-12">
+        <% if policy(Video.new).create? %>
+          <%= link_to "Delete Video", [@video.topic, @video], method: :delete, class: 'btn btn-danger' %>
+          <%= link_to "Edit Video", edit_topic_video_path(@video.topic, @video), class: 'btn btn-success' %>
+        <% else %>
+          <%= link_to "Delete Video", '', class: 'btn btn-danger disabled', disabled:true %>
+          <%= link_to "Edit Video", '', class: 'btn btn-success disabled', disabled:true %>
+          <h6> You can only edit your own videos.  You  must be signed in to comment, vote or favorite!</h6>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+
+        <% if current_user %>
+          <%= render partial: 'favorites/favorite', locals: { video: @video } %>
+        <% end %>
+
+        <h5>
+          <%= pluralize(@video.points, 'point') %>
+          <div>
+            <small>
+              <%= pluralize(@video.up_votes, 'up vote') %>,
+              <%= pluralize(@video.down_votes, 'down vote') %>
+            </small>
+          </div>
+        </h5>
+      </div>
+    </div>
+
+  <%= render partial: 'votes/voting', locals: { video: @video } %>
+
+  </div>
 </div>
 
 <div>

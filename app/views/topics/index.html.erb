@@ -1,6 +1,22 @@
 <h1>Topics</h1>
+
+<!--topic list -->
+<div class="row nav nav-tabs">
+ <div class="col-md-12">
+   <% @topics.each do |topic| %>
+     <div class="media inline-block">
+       <div class="media-heading">
+         <h6><%= link_to topic.title, topic %>&nbsp; &nbsp; &nbsp;</h6>
+       </div>
+     </div>
+   <% end %>
+ </div>
+</div>
+
+
+ &nbsp;
  <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <% @topics.each do |topic| %>
       <div class="media">
 
@@ -9,24 +25,29 @@
         </div>
 
         <div class="media-body">
-          <div class="col-md-8 panel panel-info">
-            <% topic.videos.each do |video| %>
+          <div class="col-md-12">
+            <% topic.videos.each_slice(3) do |slice| %>
+              <div class="row vid-row">
+                <% slice.each do |video| %>
+                  <div class="col-sm-4">
+                    <ul style="list-style-type:none">
+                      <li>  <%= link_to video.video_title, topic_video_path(topic, video) %></li>
+                      <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(topic, video) %></li>
+                      <li>
+                        <span>
+                          <%= render partial: 'votes/voting', locals: { video: video } %>
+                          &nbsp; XXX
+                          <% if current_user %>
+                            <%= render partial: 'favorites/favorite', locals: { video: video } %>
+                          <% end %>
+                      </span>
+                      </li>
 
-              <%= render partial: 'votes/voting', locals: { video: video } %>
-              <ul style="list-style-type:none">
-                <li>  <%= link_to video.video_title, topic_video_path(topic, video) %></li>
-                <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(topic, video) %></li>
 
-<!--BUG alignment of favs  -->
-                <div class="col-md-4 inline-block">
 
-                  <% if current_user %>
-                    <%= render partial: 'favorites/favorite', locals: { video: video } %>
+                    </div>
                   <% end %>
-
                 </div>
-
-
               </ul>
             <% end %>
           </div>

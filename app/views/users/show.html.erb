@@ -11,10 +11,10 @@
         <div class="media-body">
           <div class="col-md-8 panel panel-info">
             <% @user_videos.each do |video| %>
-              <%= render partial: 'votes/voting', locals: { video: video } %>
               <ul style="list-style-type:none">
                 <li>  <%= link_to video.video_title, topic_video_path(video.topic, video) %></li>
                 <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(video.topic, video)  %></li>
+                <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
               </ul>
             <% end %>
           </div>
@@ -26,10 +26,11 @@
         <div class="media-body">
           <div class="col-md-8 panel panel-info">
             <% @favorited_videos.each do |video| %>
-              <%= render partial: 'votes/voting', locals: { video: video } %>
+
               <ul style="list-style-type:none">
                 <li>  <%= link_to video.video_title, topic_video_path(video.topic, video) %></li>
                 <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(video.topic, video) %></li>
+                <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
               </ul>
             <% end %>
           </div>
