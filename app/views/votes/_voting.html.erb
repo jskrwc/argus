@@ -4,7 +4,7 @@
   <span><strong><%= video.points %></strong></span>
   <span><%= link_to " ", video_down_vote_path(video), class: 'glyphicon glyphicon-thumbs-down', method: :post%></span>
 
-   &nbsp 
+   <!-- &nbsp  -->
 
    <% if current_user %>
      <%= render partial: 'favorites/favorite', locals: { video: video } %>
