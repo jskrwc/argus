@@ -18,14 +18,15 @@
  <div class="row">
   <div class="col-md-12">
     <% @topics.each do |topic| %>
-      <div class="media">
+      <div class="panel">
 
-        <div class="media-heading">
+        <div class="panel-heading">
           <h4><%= link_to topic.title, topic %></h4>
         </div>
 
-        <div class="media-body">
-          <div class="col-md-12">
+        <div class="panel-body">
+          <div class="col-md-12 panel panel-info">
+            &nbsp;
             <% topic.videos.each_slice(3) do |slice| %>
               <div class="row vid-row">
                 <% slice.each do |video| %>
@@ -36,17 +37,12 @@
                       <li>
                         <span>
                           <%= render partial: 'votes/voting', locals: { video: video } %>
-                          <!-- &nbsp; XXX
-                          <% if current_user %>
-                            <%= render partial: 'favorites/favorite', locals: { video: video } %>
-                          <% end %> -->
-                      </span>
+                        </span>
                       </li>
-
-                    </div>
-                  <% end %>
-                </div>
-              </ul>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>
@@ -64,8 +60,3 @@
     <h6> (you must be signed in to create a new topic!) </h6>
   <% end %>
 </div>
-
-
-<% comment do %>
-    NOTE form partial _part only contains the list and not the loop bc  index.html uses topic.videos; show.html uses @topic.videos
-<% comment end %>

@@ -17,7 +17,6 @@ class User < ApplicationRecord
 
   def init
     self.role ||= :standard     # use after_initialize callback to set default(s) for attributes, associations
-    # put argus.today logic here???  e.g. set these emails to default to admin?
   end
 
   enum role: [:standard, :admin]
@@ -28,6 +27,6 @@ class User < ApplicationRecord
 
   def favorited_videos
     favorites.includes( video: :topic ).map(&:video)
-  end 
+  end
 
 end

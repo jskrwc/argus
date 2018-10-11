@@ -2,36 +2,51 @@
 
 <h1>My Submitted Videos and Favorites</h1>
  <div class="row">
-  <div class="col-md-6">
-      <div class="media">
+  <div class="col-md-12">
+      <div class="panel">
 
-        <div class="media-heading">
+        <div class="panel-heading">
           <h4>My Submitted Videos</h4>
         </div>
-        <div class="media-body">
-          <div class="col-md-8 panel panel-info">
-            <% @user_videos.each do |video| %>
-              <ul style="list-style-type:none">
-                <li>  <%= link_to video.video_title, topic_video_path(video.topic, video) %></li>
-                <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(video.topic, video)  %></li>
-                <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
-              </ul>
+
+        <div class="panel-body">
+          <div class="col-md-12 panel panel-info">
+            &nbsp;
+            <% @user_videos.each_slice(3) do |slice| %>
+              <div class="row vid-row">
+                <% slice.each do |video| %>
+                  <div class="col-sm-4">
+                    <ul style="list-style-type:none">
+                      <li>  <%= link_to video.video_title, topic_video_path(video.topic, video) %></li>
+                      <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(video.topic, video)  %></li>
+                      <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>
 
-        <div class="media-heading">
+        <div class="panel-heading">
           <h4>My Favorited Videos</h4>
         </div>
-        <div class="media-body">
-          <div class="col-md-8 panel panel-info">
-            <% @favorited_videos.each do |video| %>
 
-              <ul style="list-style-type:none">
-                <li>  <%= link_to video.video_title, topic_video_path(video.topic, video) %></li>
-                <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(video.topic, video) %></li>
-                <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
-              </ul>
+        <div class="panel-body">
+          <div class="col-md-12 panel panel-info">
+            &nbsp;
+            <% @favorited_videos.each_slice(3) do |slice| %>
+              <div class="row vid-row">
+                <% slice.each do |video| %>
+                  <div class="col-sm-4">
+                    <ul style="list-style-type:none">
+                      <li>  <%= link_to video.video_title, topic_video_path(video.topic, video) %></li>
+                      <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(video.topic, video) %></li>
+                      <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>

@@ -3,24 +3,28 @@
  <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
  <div class="row">
    <div class="col-md-12">
-     <div class="media">
-       <div class="media-heading"
+     <div class="panel">
+       <div class="panel-heading"
         <h4>Videos in this topic:</h4>
        </div>
 
-       <div class="media-body">
-         <div class="col-md-8 panel panel-info">
-           <% @topic.videos.each do |video| %>
-
-
-             <ul style="list-style-type:none">
-               <li>  <%= link_to video.video_title, topic_video_path(@topic, video) %></li>
-               <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(@topic, video) %></li>
-               <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
-             </ul>
-
-           <% end %>
-         </div>
+       <div class="panel-body">
+        <div class="col-md-12 panel panel-info">
+          <% @topic.videos.each_slice(3) do |slice| %>
+          &nbsp;
+            <div class="row vid-row">
+              <%slice.each do |video| %>
+                <div class="col-sm-4">
+                  <ul style="list-style-type:none">
+                    <li>  <%= link_to video.video_title, topic_video_path(@topic, video) %></li>
+                    <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(@topic, video) %></li>
+                    <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
+                  </ul>
+                 </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
        </div>
 
      </div>
