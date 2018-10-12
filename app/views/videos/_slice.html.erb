@@ -1,0 +1,15 @@
+<div class="row vid-row">
+  <% slice.each do |video| %>
+    <div class="col-sm-4">
+      <ul class="text-center" style="list-style-type:none">
+        <li>  <%= link_to video.video_title, topic_video_path(topic, video) %></li>
+        <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(topic, video) %></li>
+        <li>
+          <span>
+            <%= render partial: 'votes/voting', locals: { video: video } %>
+          </span>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+</div>

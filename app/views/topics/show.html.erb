@@ -11,20 +11,10 @@
        <div class="panel-body">
         <div class="col-md-12 panel panel-info">
           <% @topic.videos.each_slice(3) do |slice| %>
-          &nbsp;
-            <div class="row vid-row">
-              <%slice.each do |video| %>
-                <div class="col-sm-4">
-                  <ul style="list-style-type:none">
-                    <li>  <%= link_to video.video_title, topic_video_path(@topic, video) %></li>
-                    <li> <%= link_to image_tag("http://img.youtube.com/vi/#{video.video_id}/2.jpg"), topic_video_path(@topic, video) %></li>
-                    <li><%= render partial: 'votes/voting', locals: { video: video } %></li>
-                  </ul>
-                 </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+            &nbsp;
+            <%= render partial: 'videos/slice', locals: {slice: slice, topic: @topic} %>
+          <% end %>
+        </div>
        </div>
 
      </div>

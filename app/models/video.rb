@@ -12,9 +12,6 @@ class Video < ApplicationRecord
     default_scope {order('rank DESC') }
 
 
-  # BUG validation below is preventing create video
-  # validates :video_id, length: { minimum: 11 }, presence: true
-
   def get_video_id
     regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     match = regex.match(url)
@@ -23,12 +20,11 @@ class Video < ApplicationRecord
     end
   end
 
-  # BUG temporary - just grab video_id again to use as title for now
   def get_video_title
-    regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-    match = regex.match(url)
-    if match && !match[1].blank?
-      self.video_title = "Title of " + match[1]
+    video = Yt::Video.new id: self.video_id
+    title = video.title
+    if title
+      self.video_title = title
     end
   end
 
