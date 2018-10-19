@@ -8,14 +8,11 @@
         <div class="panel-heading">
           <h4>My Submitted Videos</h4>
         </div>
-
         <div class="panel-body">
           <div class="col-md-12 panel panel-info">
             &nbsp;
             <% @user_videos.each_slice(3) do |slice| %>
-<%= render partial: 'videos/slice', locals: {slice: slice} %>
-
-
+              <%= render partial: 'videos/slice', locals: {slice: slice} %>
             <% end %>
           </div>
         </div>
@@ -23,13 +20,11 @@
         <div class="panel-heading">
           <h4>My Favorited Videos</h4>
         </div>
-
         <div class="panel-body">
           <div class="col-md-12 panel panel-info">
             &nbsp;
             <% @favorited_videos.each_slice(3) do |slice| %>
-<%= render partial: 'videos/slice', locals: {slice: slice} %>
-
+              <%= render partial: 'videos/slice', locals: {slice: slice} %>
             <% end %>
           </div>
         </div>

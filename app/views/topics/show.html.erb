@@ -3,11 +3,11 @@
  <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
  <div class="row">
    <div class="col-md-12">
+     
      <div class="panel">
        <div class="panel-heading"
         <h4>Videos in this topic:</h4>
        </div>
-
        <div class="panel-body">
         <div class="col-md-12 panel panel-info">
           <% @topic.videos.each_slice(3) do |slice| %>
