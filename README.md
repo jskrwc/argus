@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an original Rails project done as part of my Bloc coursework studies.
 
-Things you may want to cover:
+The "Argus" project is a Rails 5 based web app, using Postgres database deployed on heroku.  
 
-* Ruby version
+URL: www.argus.today
 
-* System dependencies
+Argus app archives youtube videos in various topics.  
 
-* Configuration
+Users can sign up/sign in to:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* upload video links (directly, or by email),
+* upvote/downvote,
+* comment
+* favorite
